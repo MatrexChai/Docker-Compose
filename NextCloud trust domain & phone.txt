@@ -1,0 +1,63 @@
+'default_phone_region' => 'MY',
+
+    1 => 'matrex.local:8050',
+    2 => 'nextcloud.matrex.uk',
+    3 => '100.71.227.121',
+
+
+    0 => '192.168.0.100:8060',
+    1 => 'matrex.local:8060',
+    2 => 'localhost',
+    3 => 'owncloud.matrex.uk',
+    4 => '100.71.227.121',
+
+sudo -u www-data php /DATA/AppData/nextcloud/cron.php
+
+/DATA/AppData/nextcloud/data
+
+location = /.well-known/host-meta {return 301 $scheme://$http_hostpublic.php?service=host-meta;}
+       location = /.well-known/host-meta.json {return 301 $scheme://$http_host/public.php?service=host-meta-json;}
+       location = /.well-known/carddav {return 301 $scheme://$http_host/remote.php/dav;}
+       location = /.well-known/caldav {return 301 $scheme://$http_host/remote.php/dav;}
+       location = /.well-known/webfinger{return 301 $scheme://$http_host/index.php/.well-known/webfinger;}
+       location = /.well-known/nodeinfo{return 301 $scheme://$http_host/index.php/.well-known/nodeinfo;}
+
+Matrex2003
+
+changeme
+
+sudo chmod -R a+rwx /media
+sudo chmod -R a+rwx /DATA
+
+sudo mount -t ext4 /dev/sdb1 /media
+
+matrexdns.duckdns.org
+
+matrexhome.duckdns.org
+
+matrexserver.duckdns.org
+
+34fcc2d7-2019-407a-8253-9cad6772d10a
+
+192.168.100.16
+
+homa.matrexdns.duckdns.org
+192.168.100.16  7575
+
+TIMETF9S
+
+memory_limit=1024M
+upload_max_filesize=10G
+
+https://collabora.matrexdns.duckdns.org
+
+https://collabora.matrexdns.duckdns.org
+
+/DATA/AppData/jellyfin/config
+
+/DATA/AppData/jellyfin/media/Hong Kong Drama
+/DATA/AppData/jellyfin/media/China Drama
+/DATA/AppData/jellyfin/media/China Movies
+/DATA/AppData/jellyfin/media/Singapore Drama
+/DATA/AppData/jellyfin/media/Movies
+/DATA/AppData/jellyfin/media/Shows
