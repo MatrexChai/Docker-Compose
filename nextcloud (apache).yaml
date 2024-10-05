@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  nextcloud:
+    container_name: nextcloud-apache
+    restart: always
+    image: nextcloud:latest
+    ports:
+      - 8050:80
+    environment:
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=ncdb
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=maria-db
+    volumes:
+      - /appdata/cloud/nextcloud/apps:/var/www/html/apps
+      - /appdata/cloud/nextcloud/config:/var/www/html/config
+      - /appdata/cloud/nextcloud/data:/var/www/html/data
+      - /appdata/cloud/nextcloud/nextcloud:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    container_name: maria-db
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ncdb
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud
+    volumes:
+      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/cloud/mariadb:/var/lib/mysql
