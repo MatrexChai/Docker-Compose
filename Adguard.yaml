@@ -1,0 +1,33 @@
+version: "3"
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 68:68/udp
+      - 68:68/tcp
+      - 3000:3000/tcp
+      - 80:80/tcp
+      - 443:443/tcp
+    volumes:
+      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/adguardhome/workdir:/opt/adguardhome/work
+      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/adguardhome/confdir:/opt/adguardhome/conf
+
+    restart: unless-stopped
+    networks:
+      - adguard-macvlan
+
+networks:
+  adguard-macvlan:
+    name: adguard-macvlan
+    driver: macvlan
+    driver_opts:
+      parent: ens33
+    ipam:
+      config:
+        - subnet: "192.168.100.0/24"
+          ip_range: "192.168.100.64/24"
+          gateway: "192.168.100.1"
