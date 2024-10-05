@@ -1,0 +1,14 @@
+version: '3'
+#---------------------------------------------------------------------#
+#     Homarr - A simple, yet powerful dashboard for your server.     #
+#---------------------------------------------------------------------#
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /srv/dev-disk-by-uuid-50a21db0-1925-41c4-9870-e69cfda4684d/appdata/homarr/configs:/app/data/configs
+      - /srv/dev-disk-by-uuid-50a21db0-1925-41c4-9870-e69cfda4684d/appdata/homarr/icons:/app/public/icons
+    ports:
+      - '7575:7575'
