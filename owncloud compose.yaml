@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+
+  owncloud:
+    image: owncloud/server
+    restart: always
+    ports:
+      - 8060:8080
+    depends_on:
+      - db
+      - redis
+    environment:
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USERNAME=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloud
+      - OWNCLOUD_DB_HOST=db
+      - OWNCLOUD_ADMIN_USERNAME=MatrexChai
+      - OWNCLOUD_ADMIN_PASSWORD=Matrex2003
+      - OWNCLOUD_MYSQL_UTF8MB4=true
+      - OWNCLOUD_REDIS_ENABLED=true
+      - OWNCLOUD_REDIS_HOST=redis
+    volumes:
+      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/files:/mnt/data
+
+  db:
+    image: webhippie/mariadb:latest
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=owncloud
+      - MARIADB_USERNAME=owncloud
+      - MARIADB_PASSWORD=owncloud
+      - MARIADB_DATABASE=owncloud
+      - MARIADB_MAX_ALLOWED_PACKET=128M    # Puedes variar este parámetro
+      - MARIADB_INNODB_LOG_FILE_SIZE=64M   # Puedes variar este parámetro
+    volumes:
+      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/mysql/mysql:/var/lib/mysql
+
+  redis:
+    image: webhippie/redis:latest
+    restart: always
+    environment:
+      - REDIS_DATABASES=1
+    volumes:
+      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/redis/redis:/var/lib/redis
+
+volumes:
+  files:
+  mysql:
+  redis:
