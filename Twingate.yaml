@@ -1,0 +1,36 @@
+name: wonderful_john
+services:
+  twingate-connector:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 1968M
+    environment:
+      - TWINGATE_ACCESS_TOKEN=
+      - TWINGATE_NETWORK=
+      - TWINGATE_REFRESH_TOKEN=
+    image: twingate/connector:latest
+    labels:
+      icon: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAACfCAMAAABX0UX9AAAAb1BMVEUAAAD///8FBQWlpaXc3NzY2NhjY2OCgoLo6Ojx8fFoaGjr6+t/f3/39/cqKiqUlJTh4eHGxsYjIyM8PDy1tbWoqKhSUlJCQkJeXl7Ozs53d3e+vr4wMDCZmZlZWVltbW0YGBhJSUkRERGKioofHx/1WYYiAAAET0lEQVR4nO3d61LqMBiF4Y8KSilVQM4gKnr/12ihpQ1N0kNW2bOnWe9PzNTxmbYkAUGk254G/3VPHf+5XUc+KPJBkQ+KfFDkgyIfFPmgyAdFPijyQZEPinxQ5IMiHxT5oMgHRT4o8kGRD4p8UOSDIh8U+aDIB0U+KPJBkQ/qYXyHTo7iKd/4e9/JcfzkO5zlpZMD+cgXvyQHJp9jw7VIQD7HlgleQD7HJlc98jk1S/HI5/rXBuRzLJrkeuRr3fyY45GvdR+i6JGvXePTnR75WnVY3OGRr1VvUtIz841bH9gHvvF7Gc/MN/kgn95SO/WMfLOFwy/rPV+8N+npfCunX9Z3vtG7Ua/MF35edmHIp/95Jrwy3+56dyTfffGnTe+eL0Mm312jVxteIPKTD4u2GTL51FbWUy/Rm8S3YfMcmXxK5mfcTG+ZD1OWwuTLC9dWvEDeh/mwjboLQ76s8W/FqTfNhx3ud2HIlzasuHCD+W1UPC3twpDvWmSfr8gpyo03pWHkSyvvTil6xa7A01nbhSHfpalVb1FcuIYZNfkuzW3rNHnOL1zjjJp8SfHGzKdeuOYZNfkG1pNPfne3EaFlKUy+pK2ZZh3eBuy+bFc3+QbjoGZ39Mc+qyFfspAwuMjq9uNoXTGjJp9p1qLsEOzseOS7dNKnc4XeR5Ue+UzTlmLCYnnViHxFofaabr7BEuonJvlKReXlhByzGUv0XaNHvsFgVp7USfb/L7bFCPnUyjt9ss5+ULH7TD47X/asa92FIV8Fn5zTO1/lfI98Vr5J+vCxgR75dL50tWbbAiRfDV+6S2XehSFfLd/11hc2ufORT+MTub4XY9lIj3wa3/H64J58bnzppLnZrY98Gt/z5bHY+rov+Rrwhc30yAfy8R8TTHyzpnxv5DPwjchHPqfIB0U+KPJB/VM+zvsgvmXd0clHvofxzeuOTr4qvhn53PkkCOuOTr4Kvm1rPfIpg9tP+8hXjJX2n0NCvmKsw7VLvmLsiHzufPLpoEe+28hzXHdo8tn1ZFd3ZPJV6K3qDuwl37YRn/tHJvSaTxbDJnzO516v+fLPfKjhE4edlt7ziSxuzwbVfPLafqOl93wi+3z/pIovGec0Y+k3n3wpX2dSwQfc9vrLJzJRl/9WPpGNy0qt53xSetHCxpc8tyAXbk/5ZF16LrDwyQL/vqIe8mlvMzPyJcoO+3t95xsVn45WydfRJ0L3jc90M9P5BJrsKfWNz5TGp370JpaHfCJH91VaKf/41PUInHd88tv+nSz2POMTOXUwXSnyiw9d4mr5xCdimBRiecTX3XSlyBu+5NQDd1dM+cL3iFNv4A2fHN1ex63LDz6ZdjdTvssPvm6+iNyQD3xRN7srpnzge2DkgyIfFPmgyAdFPijyQZEPinxQ5IMiHxT5oMgHRT4o8kGRD4p8UOSDIh8U+aDIB0U+KPJBkQ+KfFDkgyIfFPmgyAfVNd8fSICDSmeqTlAAAAAASUVORK5CYII=
+    restart: unless-stopped
+    ports: []
+    volumes: []
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+    container_name: ""
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAACfCAMAAABX0UX9AAAAb1BMVEUAAAD///8FBQWlpaXc3NzY2NhjY2OCgoLo6Ojx8fFoaGjr6+t/f3/39/cqKiqUlJTh4eHGxsYjIyM8PDy1tbWoqKhSUlJCQkJeXl7Ozs53d3e+vr4wMDCZmZlZWVltbW0YGBhJSUkRERGKioofHx/1WYYiAAAET0lEQVR4nO3d61LqMBiF4Y8KSilVQM4gKnr/12ihpQ1N0kNW2bOnWe9PzNTxmbYkAUGk254G/3VPHf+5XUc+KPJBkQ+KfFDkgyIfFPmgyAdFPijyQZEPinxQ5IMiHxT5oMgHRT4o8kGRD4p8UOSDIh8U+aDIB0U+KPJBkQ/qYXyHTo7iKd/4e9/JcfzkO5zlpZMD+cgXvyQHJp9jw7VIQD7HlgleQD7HJlc98jk1S/HI5/rXBuRzLJrkeuRr3fyY45GvdR+i6JGvXePTnR75WnVY3OGRr1VvUtIz841bH9gHvvF7Gc/MN/kgn95SO/WMfLOFwy/rPV+8N+npfCunX9Z3vtG7Ua/MF35edmHIp/95Jrwy3+56dyTfffGnTe+eL0Mm312jVxteIPKTD4u2GTL51FbWUy/Rm8S3YfMcmXxK5mfcTG+ZD1OWwuTLC9dWvEDeh/mwjboLQ76s8W/FqTfNhx3ud2HIlzasuHCD+W1UPC3twpDvWmSfr8gpyo03pWHkSyvvTil6xa7A01nbhSHfpalVb1FcuIYZNfkuzW3rNHnOL1zjjJp8SfHGzKdeuOYZNfkG1pNPfne3EaFlKUy+pK2ZZh3eBuy+bFc3+QbjoGZ39Mc+qyFfspAwuMjq9uNoXTGjJp9p1qLsEOzseOS7dNKnc4XeR5Ue+UzTlmLCYnnViHxFofaabr7BEuonJvlKReXlhByzGUv0XaNHvsFgVp7USfb/L7bFCPnUyjt9ss5+ULH7TD47X/asa92FIV8Fn5zTO1/lfI98Vr5J+vCxgR75dL50tWbbAiRfDV+6S2XehSFfLd/11hc2ufORT+MTub4XY9lIj3wa3/H64J58bnzppLnZrY98Gt/z5bHY+rov+Rrwhc30yAfy8R8TTHyzpnxv5DPwjchHPqfIB0U+KPJB/VM+zvsgvmXd0clHvofxzeuOTr4qvhn53PkkCOuOTr4Kvm1rPfIpg9tP+8hXjJX2n0NCvmKsw7VLvmLsiHzufPLpoEe+28hzXHdo8tn1ZFd3ZPJV6K3qDuwl37YRn/tHJvSaTxbDJnzO516v+fLPfKjhE4edlt7ziSxuzwbVfPLafqOl93wi+3z/pIovGec0Y+k3n3wpX2dSwQfc9vrLJzJRl/9WPpGNy0qt53xSetHCxpc8tyAXbk/5ZF16LrDwyQL/vqIe8mlvMzPyJcoO+3t95xsVn45WydfRJ0L3jc90M9P5BJrsKfWNz5TGp370JpaHfCJH91VaKf/41PUInHd88tv+nSz2POMTOXUwXSnyiw9d4mr5xCdimBRiecTX3XSlyBu+5NQDd1dM+cL3iFNv4A2fHN1ex63LDz6ZdjdTvssPvm6+iNyQD3xRN7srpnzge2DkgyIfFPmgyAdFPijyQZEPinxQ5IMiHxT5oMgHRT4o8kGRD4p8UOSDIh8U+aDIB0U+KPJBkQ+KfFDkgyIfFPmgyAfVNd8fSICDSmeqTlAAAAAASUVORK5CYII=
+  index: /
+  is_uncontrolled: false
+  port_map: ""
+  scheme: http
+  store_app_id: wonderful_john
+  title:
+    custom: TwinGate
