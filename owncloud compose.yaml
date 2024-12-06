@@ -35,7 +35,7 @@ services:
       - MARIADB_MAX_ALLOWED_PACKET=128M    # Puedes variar este parámetro
       - MARIADB_INNODB_LOG_FILE_SIZE=64M   # Puedes variar este parámetro
     volumes:
-      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/mysql/mysql:/var/lib/mysql
+      - /DATA/appdata/owncloud/mysql/mysql:/var/lib/mysql
 
   redis:
     image: webhippie/redis:latest
