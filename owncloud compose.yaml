@@ -43,7 +43,7 @@ services:
     environment:
       - REDIS_DATABASES=1
     volumes:
-      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/redis/redis:/var/lib/redis
+      - /DATA/appdata/owncloud/redis/redis:/var/lib/redis
 
 volumes:
   files:
