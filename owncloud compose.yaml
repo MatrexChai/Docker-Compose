@@ -22,7 +22,7 @@ services:
       - OWNCLOUD_REDIS_ENABLED=true
       - OWNCLOUD_REDIS_HOST=redis
     volumes:
-      - /srv/dev-disk-by-uuid-8a07ec04-5f8e-4a3c-bebd-f3ae7dffc5b7/appdata/owncloud/files:/mnt/data
+      - /DATA/appdata/owncloud/files:/mnt/data
 
   db:
     image: webhippie/mariadb:latest
