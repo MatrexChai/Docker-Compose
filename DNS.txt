@@ -8,7 +8,7 @@ https://dns10.quad9.net/dns-query
 https://dns.adguard-dns.com/dns-query
 tls://dns.adguard-dns.com
 quic://dns.adguard-dns.com
-9.9.9.11
+9.9.9.9
 149.112.112.11
 https://dns11.quad9.net/dns-query
 tls://dns11.quad9.net
