@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: mariadb
+      MARIADB_USER: mariadb
+      MARIADB_PASSWORD: mariadb
+    volumes:
+      - mariadb-data:/var/lib/mariadb
+    networks:
+      - adminer-network
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8000:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: mariadb
+    depends_on:
+      - mariadb
+    networks:
+      - adminer-network
+volumes:
+  mariadb-data:
+
+networks:
+  adminer-network:
