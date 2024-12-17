@@ -16,16 +16,6 @@ services:
     ports:
       - "3306:3306"
 
-  adminer:
-    image: adminer:latest
-    container_name: adminer
-    depends_on:
-      - mariadb
-    networks:
-      - pydio_network
-    ports:
-      - "8080:8080"
-
   pydio:
     image: pydio/cells:latest
     container_name: pydio
