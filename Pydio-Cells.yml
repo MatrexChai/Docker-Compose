@@ -5,10 +5,10 @@ services:
     image: mariadb:latest
     container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: root_password  # Change this to a secure password
-      MYSQL_DATABASE: pydio_db
-      MYSQL_USER: pydio_user
-      MYSQL_PASSWORD: pydio_password  # Change this to a secure password
+      MYSQL_ROOT_PASSWORD: password  # Change this to a secure password
+      MYSQL_DATABASE: cells
+      MYSQL_USER: pydio
+      MYSQL_PASSWORD: pydio  # Change this to a secure password
     networks:
       - pydio_network
     volumes:
