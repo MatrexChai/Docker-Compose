@@ -21,7 +21,8 @@ services:
     container_name: pydio
     environment:
       CELLS_BIND: "0.0.0.0:8081"
-      CELLS_NO_SSL: "1"
+      CELLS_NO_SSL: "0"
+      CELLS_SITE_EXTERNAL: "http(s)://reverseproxy.com"
     depends_on:
       - mariadb
     networks:
