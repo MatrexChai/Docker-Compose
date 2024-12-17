@@ -1,0 +1,17 @@
+version: "3"
+services:
+  netalertx:
+    container_name: netalertx
+    # use the below line if you want to test the latest dev image
+    # image: "jokobsk/netalertx-dev:latest" 
+    image: "jokobsk/netalertx:latest"      
+    network_mode: "host"        
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_LOCATION}/netalertx/config:/app/config
+      - ${APP_DATA_LOCATION}/netalertx/db/:/app/db/      
+      # (optional) useful for debugging if you have issues setting up the container
+      - ${LOGS_LOCATION}:/app/log
+    environment:
+      - TZ=Asia/Kuala_Lumpur   
+      - PORT=20211
