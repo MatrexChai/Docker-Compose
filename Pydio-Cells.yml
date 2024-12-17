@@ -27,7 +27,7 @@ services:
     networks:
       - pydio_network
     ports:
-      - "8081:8081"
+      - "8080:8080"
     volumes:
       - pydio_data:/var/cells/data
       - pydio_working:/var/cells/working
