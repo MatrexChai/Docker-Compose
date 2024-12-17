@@ -12,7 +12,7 @@ services:
     networks:
       - pydio_network
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mariadb
     ports:
       - "3306:3306"
 
