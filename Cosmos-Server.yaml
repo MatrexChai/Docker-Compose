@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  cosmos-server:
+    cpu_shares: 90
+    container_name: cosmos-server
+    deploy:
+      resources:
+        limits:
+          memory: 9946M
+    environment:
+      - COSMOS_SERVER_COUNTRY=MY
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    hostname: cosmos-server
+    image: azukaar/cosmos-server:latest
+    ports:
+      - mode: ingress
+        target: 80
+        published: "2080"
+        protocol: tcp
+      - mode: ingress
+        target: 443
+        published: "2443"
+        protocol: tcp
+      - mode: ingress
+        target: 4242
+        published: "4242"
+        protocol: udp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /DATA/AppData/cosmos-server/mnt/host:/mnt/host
+      - /DATA/AppData/cosmos-server/config:/config
+    network_mode: bridge
