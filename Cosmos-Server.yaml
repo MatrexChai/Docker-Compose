@@ -10,7 +10,7 @@ services:
     environment:
       - COSMOS_SERVER_COUNTRY=MY
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - MONGO_URI=mongodb://root:example@mongodb:27017/cosmosdb  # MongoDB connection string
+      - MONGO_URI=mongodb://root:example@mongodb:27017/mongodb  # MongoDB connection string
     hostname: cosmos-server
     image: azukaar/cosmos-server:latest
     ports:
