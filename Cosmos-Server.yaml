@@ -1,12 +1,7 @@
 version: "3.7"
 services:
   cosmos-server:
-    cpu_shares: 90
     container_name: cosmos-server
-    deploy:
-      resources:
-        limits:
-          memory: 9946M
     environment:
       - COSMOS_SERVER_COUNTRY=MY
       - DOCKER_HOST=unix:///var/run/docker.sock
