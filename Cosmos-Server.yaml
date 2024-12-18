@@ -5,7 +5,6 @@ services:
     environment:
       - COSMOS_SERVER_COUNTRY=MY
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - MONGO_URI=mongodb://root:root@mongodb:27017  # MongoDB connection string
     hostname: cosmos-server
     image: azukaar/cosmos-server:latest
     ports:
@@ -28,18 +27,3 @@ services:
       - /DATA/AppData/cosmos-server/mnt/host:/mnt/host
       - /DATA/AppData/cosmos-server/config:/config
     network_mode: bridge
-
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    restart: unless-stopped
-
-volumes:
-  mongo-data:
