@@ -1,8 +1,8 @@
 services:
-    Speedtest Tracker:
+    speedtest-tracker:
         image: lscr.io/linuxserver/speedtest-tracker:latest
         restart: unless-stopped
-        container_name: speedtest-tracker
+        container_name: Speedtest Tracker
         ports:
             - 800:80
             - 1443:443
