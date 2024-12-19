@@ -16,6 +16,7 @@ services:
             - DB_DATABASE=speedtest
             - DB_USERNAME=speedtest
             - DB_PASSWORD=password
+            - DISPLAY_TIMEZONE=Asia/Kuala_Lumpur
         volumes:
             - /path/to/data:/config
             - /path/to-custom-ssl-keys:/config/keys
