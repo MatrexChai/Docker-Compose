@@ -26,10 +26,10 @@ services:
         image: mariadb:latest
         restart: always
         environment:
-            - MYSQL_DATABASE=speedtest
-            - MYSQL_USER=speedtest
-            - MYSQL_PASSWORD=password
-            - MYSQL_ROOT_PASSWORD=password
+            - MARIADB_DATABASE=speedtest
+            - MARIADB_USER=speedtest
+            - MARIADB_PASSWORD=password
+            - MARIADB_ROOT_PASSWORD=password
         volumes:
             - speedtest-db:/var/lib/mysql
         healthcheck:
