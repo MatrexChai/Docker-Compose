@@ -17,6 +17,7 @@ services:
             - MARIADB_USERNAME=speedtest
             - MARIADB_PASSWORD=password
             - DISPLAY_TIMEZONE=Asia/Kuala_Lumpur
+            - SPEEDTEST_SCHEDULE=*/30 * * * *
         volumes:
             - /path/to/data:/config
             - /path/to-custom-ssl-keys:/config/keys
