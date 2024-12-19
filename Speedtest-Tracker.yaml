@@ -21,8 +21,8 @@ services:
             - /path/to/data:/config
             - /path/to-custom-ssl-keys:/config/keys
         depends_on:
-            - db
-    db:
+            - mariadb
+    mariadb:
         image: mariadb:latest
         restart: always
         environment:
