@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  big-bear-glances:
+    image: nicolargo/glances:latest-full
+    container_name: glances
+    environment:
+      - GLANCES_OPT=-w
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - "61208:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/glances.png
+    pid: host
+    restart: unless-stopped
+    networks:
+      - default
+
+networks:
+  default:
+    name: glances
