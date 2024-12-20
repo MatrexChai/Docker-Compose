@@ -1,0 +1,150 @@
+name: immich
+services:
+  database:
+    command:
+      - postgres
+      - -c
+      - shared_preload_libraries=vectors.so
+      - -c
+      - search_path="", public, vectors
+      - -c
+      - logging_collector=on
+      - -c
+      - max_wal_size=2GB
+      - -c
+      - shared_buffers=512MB
+      - -c
+      - wal_compression=on
+    container_name: immich-postgres
+    deploy:
+    environment:
+      - POSTGRES_DB=immich
+      - POSTGRES_INITDB_ARGS=--data-checksums
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    hostname: immich-postgres
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready --dbname='immich' --username='postgres' || exit 1;
+          Chksum="$(psql --dbname='immich' --username='postgres' --tuples-only
+          --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM
+          pg_stat_database')"; echo "checksum failure count is "; [ "" = '0' ]
+          || exit 1
+      interval: 5m0s
+      start_period: 5m0s
+      start_interval: 30s
+    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/immich/icon.png
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/immich/pgdata
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: true
+    ports: []
+    devices: []
+    cap_add: []
+    networks:
+      - immich
+    privileged: false
+  immich-machine-learning:
+    command: []
+    container_name: immich-machine-learning
+    deploy:
+    environment:
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+    hostname: immich-machine-learning
+    healthcheck: {}
+    image: altran1502/immich-machine-learning:latest
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/immich/icon.png
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/immich/model-cache
+        target: /cache
+        bind:
+          create_host_path: true
+    ports: []
+    devices: []
+    cap_add: []
+    networks:
+      - immich
+    privileged: false
+  immich-server:
+    command: []
+    container_name: immich-server
+    depends_on:
+      database:
+        condition: service_started
+        required: true
+      redis:
+        condition: service_started
+        required: true
+    deploy:
+    environment:
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD=postgres
+      - DB_USERNAME=postgres
+    hostname: immich-server
+    healthcheck: {}
+    image: altran1502/immich-server:latest
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/immich/icon.png
+    ports:
+      - mode: ingress
+        target: 2283
+        published: "2283"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/Gallery/immich
+        target: /usr/src/app/upload
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+        read_only: true
+        bind:
+          create_host_path: true
+    devices: []
+    cap_add: []
+    networks:
+      - immich
+    privileged: false
+  redis:
+    command: []
+    container_name: immich-redis
+    deploy:
+    hostname: immich-redis
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli ping || exit 1
+    image: docker.io/redis:6.2-alpine@sha256:2ba50e1ac3a0ea17b736ce9db2b0a9f6f8b85d4c27d5f5accc6a416d8f42c6d5
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/immich/icon.png
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/immich/redis
+        target: /data
+        bind:
+          create_host_path: true
+    ports: []
+    devices: []
+    cap_add: []
+    environment: []
+    networks:
+      - immich
+    privileged: false
+networks:
+  immich:
+    name: immich
