@@ -3,15 +3,13 @@ services:
     image: henrygd/beszel:latest
     container_name: beszel
     restart: unless-stopped
-    extra_hosts:
-      - host.docker.internal:host-gateway
     ports:
       - 8090:8090
     volumes:
       - ./beszel_data:/beszel_data
       
   beszel-agent:
-    image: "henrygd/beszel-agent"
+    image: "henrygd/beszel-agent:latest"
     container_name: "beszel-agent"
     restart: unless-stopped
     network_mode: host
