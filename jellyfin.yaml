@@ -8,14 +8,14 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/config:/config:rw
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/cache:/cache:rw
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/Hong Kong Drama:/Hong Kong Drama
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/China Drama:/China Drama
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/China Movie:/China Movie
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/Singapore Drama:/Singapore Drama
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/Movies:/Movies
-      - /srv/dev-disk-by-uuid-b2690224-c1a3-4024-946d-ca4e02714936/appdata/jellyfin/media/Shows:/Shows
+      - /DATA/appdata/jellyfin/config:/config:rw
+      - /DATA/appdata/jellyfin/cache:/cache:rw
+      - /DATA/appdata/jellyfin/media/Hong Kong Drama:/Hong Kong Drama
+      - /DATA/appdata/jellyfin/media/China Drama:/China Drama
+      - /DATA/appdata/jellyfin/media/China Movie:/China Movie
+      - /DATA/appdata/jellyfin/media/Singapore Drama:/Singapore Drama
+      - /DATA/appdata/jellyfin/media/Movies:/Movies
+      - /DATA/appdata/jellyfin/media/Shows:/Shows
     ports:
       - 8096:8096
       - 8920:8920 #optional
