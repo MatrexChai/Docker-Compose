@@ -1,0 +1,16 @@
+{
+    "settings": [
+        {
+            "provider": "duckdns",
+            "domain": "matrexdns.duckdns.org",
+            "token": "34fcc2d7-2019-407a-8253-9cad6772d10a",
+            "ip_version": "ipv4"
+        },
+        {
+            "provider": "duckdns",
+            "domain": "matrexhome.duckdns.org",
+            "token": "34fcc2d7-2019-407a-8253-9cad6772d10a",
+            "ip_version": "ipv4"
+        }
+    ]
+}
