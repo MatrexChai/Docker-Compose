@@ -1,4 +1,3 @@
-# traefik.yml
 entryPoints:
   web:
     address: :80
@@ -7,10 +6,10 @@ entryPoints:
     address: :443
 
 certificatesResolvers:
-  letsencrypt:
+  letsencrypt-duck:
     acme:
       email: jiayangchai1203@gmail.com
-      storage: /etc/traefik/acme.json
+      storage: /etc/traefik/acme-duck.json
       dnsChallenge:
         provider: duckdns
         disablePropagationCheck: true
@@ -19,12 +18,23 @@ certificatesResolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
 
+  letsencrypt-dynu:
+    acme:
+      email: jiayangchai1203@gmail.com
+      storage: /etc/traefik/acme-dynu.json
+      dnsChallenge:
+        provider: dynu
+        disablePropagationCheck: true
+        delayBeforeCheck: 60s
+        resolvers:
+          - "1.1.1.1:53"
+          - "1.0.0.1:53"
+
 tls:
-  certResolver: letsencrypt
-  domains:
-    - main: "matrexdns.duckdns.org"
-      sans:
-        - "*.matrexdns.duckdns.org"
+  stores:
+    default:
+      defaultCertificate:
+        certResolver: letsencrypt-duck
 
 api:
   insecure: true
@@ -32,7 +42,7 @@ api:
 
 providers:
   file:
-    filename: /etc/traefik/dynamic/dynamic.yml
+    directory: /etc/traefik/dynamic
     watch: true
 
 log:
