@@ -1,20 +1,36 @@
 http:
   routers:
-    uptimekuma:
+    uptimekuma-duckdns:
       rule: Host(`upk.matrexdns.duckdns.org`)
       service: uptimekuma
       entryPoints:
         - websecure
       tls:
-        certResolver: letsencrypt
+        certResolver: letsencrypt-duck
 
-    jellyfin:
+    jellyfin-duckdns:
       rule: Host(`jf.matrexdns.duckdns.org`)
       service: jellyfin
       entryPoints:
         - websecure
       tls:
-        certResolver: letsencrypt
+        certResolver: letsencrypt-duck
+
+    uptimekuma-dynu:
+      rule: Host(`upk.matrex.gleeze.com`)
+      service: uptimekuma
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    jellyfin-dynu:
+      rule: Host(`jf.matrex.gleeze.com`)
+      service: jellyfin
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
 
   services:
     uptimekuma:
