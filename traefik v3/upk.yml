@@ -1,0 +1,28 @@
+http:
+  routers:
+    uptimekuma:
+      rule: Host(`upk.matrexdns.duckdns.org`)
+      service: uptimekuma
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+
+    jellyfin:
+      rule: Host(`jf.matrexdns.duckdns.org`)
+      service: jellyfin
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    uptimekuma:
+      loadBalancer:
+        servers:
+          - url: http://192.168.3.42:3001
+
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: http://192.168.3.42:8096

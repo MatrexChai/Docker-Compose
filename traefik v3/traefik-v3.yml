@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  traefik-v3:
+    container_name: traefik-v3
+    image: traefik:v3.0
+    command:
+      - sh
+      - -c
+      - >-
+        if [ ! -f "/etc/traefik/traefik.yml" ]; then
+          echo -n "No config file found. Downloading config from GitHub... "
+          wget -O /etc/traefik/traefik.yml https://raw.githubusercontent.com/traefik/traefik/v3.0/traefik.sample.yml && echo "done." || { echo "error."; exit 1; }
+          echo -n "Enabling API... "
+          sed -i "s/#api:/api:/" /etc/traefik/traefik.yml
+          sed -i "s/#  insecure:/  insecure:/" /etc/traefik/traefik.yml
+          echo "done."
+          echo -n "Enabling Docker... "
+          sed -i "s/#providers:/providers:/g" /etc/traefik/traefik.yml
+          sed -i "s/#  docker:/  docker:/g" /etc/traefik/traefik.yml
+          sed -i "s/^#    endpoint: tcp:\/\/.*/    endpoint: \"unix:\/\/\/var\/run\/docker.sock\"/g" /etc/traefik/traefik.yml
+          echo "done."
+        fi
+        traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8181:8080"
+    environment:
+      - DUCKDNS_TOKEN=34fcc2d7-2019-407a-8253-9cad6772d10a
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /DATA/AppData/traefik-v3/config:/etc/traefik
+      - /DATA/AppData/traefik-v3/config/dynamic:/etc/traefik/dynamic
