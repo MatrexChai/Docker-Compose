@@ -1,0 +1,91 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services
+
+- Public Hosted Docker:
+    - Adguard Home:
+        href: https://adg.matrex.gleeze.com
+        ping: https://adg.matrex.gleeze.com
+        icon: adguard-home.png
+        username: MatrexChai
+        password: Matrex2003
+        allowed_fields: ["queries", "blocked", "filtered", "latency"]
+  
+    - Uptime Kuma:
+        href: https://upk.matrex.gleeze.com
+        ping: https://upk.matrex.gleeze.com
+        icon: uptime-kuma.png
+        slug: statuspageslug
+
+    - Speedtest Tracker:
+        href: https://st.matrex.gleeze.com
+        ping: https://st.matrex.gleeze.com
+        icon: speedtest-tracker.png
+
+    - What's Up Docker:
+        href: https://wud.matrex.gleeze.com
+        ping: https://wud.matrex.gleeze.com
+        icon: whats-up-docker.png
+        username: MatrexChai
+        password: Matrex2003
+
+    - Jellyfin:
+        href: https://jf.matrex.gleeze.com
+        ping: https://jf.matrex.gleeze.com
+        icon: jellyfin.png
+        key: 5a84ba38b63b4f879a68dcbda5da2706
+        enableBlocks: true # optional, defaults to false
+        enableNowPlaying: true # optional, defaults to true
+        enableUser: true # optional, defaults to false
+        showEpisodeNumber: true # optional, defaults to false
+        expandOneStreamToTwoRows: false # optional, defaults to true
+
+    - FileBrowser:
+        href: https://file.matrex.gleeze.com
+        ping: https://file.matrex.gleeze.com
+        icon: filebrowser.png
+
+    - Immich:
+        href: https://im.matrex.giize.com
+        ping: https://im.matrex.giize.com
+        icon: immich.png
+
+    - Glances:
+        href: https://gla.matrex.giize.com
+        ping: https://gla.matrex.giize.com
+        icon: glances.png
+
+    - Smokeping:
+        href: https://smoke.matrex.giize.com
+        ping: https://smoke.matrexdns.giize.com
+        icon: smokeping.png
+
+    - DPanel:
+        href: https://dp.matrex.giize.com
+        ping: https://dp.matrex.giize.com
+        icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/dpanel/icon.png
+
+    - Dozzle:
+        href: https://doz.matrex.giize.com
+        ping: https://doz.matrex.giize.com
+        icon: dozzle.png
+
+    - Netdata:
+        href: https://net.matrex.giize.com
+        ping: https://net.matrex.giize.com
+        icon: netdata.png
+
+    - Aria2:
+        href: https://aria.matrex.giize.com
+        ping: https://aria.matrex.giize.com
+        icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/aria2/icon.png
+
+    - DDNS-Updater:
+        href: https://ddns.matrex.giize.com
+        ping: https://ddns.matrex.giize.com
+        icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/DDNS-Updater/icon.png
+
+    - VSCode:
+        href: https://vs.matrex.gleeze.com
+        ping: https://ddns.matrex.gleeze.com
+        icon: https://cdn.jsdelivr.net/gh/Cp0204/CasaOS-AppStore-Play@main/Apps/vscode/icon.png   
