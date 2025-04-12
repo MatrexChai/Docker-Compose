@@ -1,21 +1,6 @@
 version: '3.9'
 
 services:
-  mariadb:
-    image: mariadb:latest
-    container_name: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password  # Change this to a secure password
-      MYSQL_DATABASE: pydio_db
-      MYSQL_USER: pydio_user
-      MYSQL_PASSWORD: pydio_password  # Change this to a secure password
-    networks:
-      - pydio_network
-    volumes:
-      - mariadb_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-
   pydio:
     image: pydio/cells:latest
     container_name: pydio
@@ -32,6 +17,21 @@ services:
       - pydio_data:/var/cells/data
       - pydio_working:/var/cells/working
       - pydio_conf:/var/cells/conf
+      
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Change this to a secure password
+      MYSQL_DATABASE: pydio_db
+      MYSQL_USER: pydio_user
+      MYSQL_PASSWORD: pydio_password  # Change this to a secure password
+    networks:
+      - pydio_network
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
 networks:
   pydio_network:
