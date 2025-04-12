@@ -1,44 +1,62 @@
-version: '3.9'
+version: '3.7'
 
 services:
-  pydio:
-    image: pydio/cells:latest
-    container_name: pydio
-    environment:
-      CELLS_BIND: "0.0.0.0:8081"
-      CELLS_NO_SSL: "1"
-    depends_on:
-      - mariadb
-    networks:
-      - pydio_network
-    ports:
-      - "8081:8081"
-    volumes:
-      - pydio_data:/var/cells/data
-      - pydio_working:/var/cells/working
-      - pydio_conf:/var/cells/conf
-      
   mariadb:
-    image: mariadb:latest
     container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: root_password  # Change this to a secure password
-      MYSQL_DATABASE: pydio_db
-      MYSQL_USER: pydio_user
-      MYSQL_PASSWORD: pydio_password  # Change this to a secure password
-    networks:
-      - pydio_network
-    volumes:
-      - mariadb_data:/var/lib/mysql
+      - MYSQL_DATABASE=cells
+      - MYSQL_PASSWORD=Matrex2003
+      - MYSQL_ROOT_PASSWORD=Matrex2003
+      - MYSQL_USER=pydio
+    image: mariadb:latest
     ports:
       - "3306:3306"
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/Pydio/var/lib/mysql:/var/lib/mysql
+    networks:
+      - pydio_network
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/Pydio/var/lib/mongo:/data/db
+    networks:
+      - pydio_network
+    environment:
+      - MONGO_INITDB_DATABASE=cells
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=Matrex2003
+
+  pydio:
+    container_name: pydio
+    depends_on:
+      - mariadb
+      - mongodb
+    environment:
+      - CELLS_BIND=0.0.0.0:8081
+      - CELLS_NO_SSL=1
+      - CELLS_MONGO_HOST=mongodb
+      - CELLS_MONGO_PORT=27017
+      - CELLS_MONGO_DB=cells
+      - CELLS_MONGO_USER=mongodb
+      - CELLS_MONGO_PASS=Matrex2003
+      - CELLS_MONGO_AUTH_DB=admin
+    image: pydio/cells:latest
+    ports:
+      - "8082:8081"
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/Pydio/var/cells/data:/var/cells/data
+      - /DATA/AppData/Pydio/var/cells/working:/var/cells/working
+      - /DATA/AppData/Pydio/var/cells/conf:/var/cells/conf
+    networks:
+      - pydio_network
 
 networks:
   pydio_network:
     driver: bridge
-
-volumes:
-  mariadb_data:
-  pydio_data:
-  pydio_working:
-  pydio_conf:
