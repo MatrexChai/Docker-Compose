@@ -1,4 +1,12 @@
 http:
+  middlewares:
+    pydio-upload-limit:
+      buffering:
+        maxRequestBodyBytes: 10737418240  # 10GB
+        memRequestBodyBytes: 10485760     # 10MB in memory
+        maxResponseBodyBytes: 0           # 0 = unlimited
+        memResponseBodyBytes: 10485760
+
   routers:
     uptimekuma-duckdns:
       rule: Host(`upk.matrexdns.duckdns.org`)
@@ -47,7 +55,9 @@ http:
         - websecure
       tls:
         certResolver: letsencrypt-dynu
-  
+      middlewares:
+        - pydio-upload-limit
+
   services:
     uptimekuma:
       loadBalancer:
@@ -68,3 +78,6 @@ http:
       loadBalancer:
         servers:
           - url: http://zima.my.local:8082
+        passHostHeader: true
+        responseForwarding:
+          flushInterval: 100ms
