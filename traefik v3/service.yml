@@ -32,6 +32,22 @@ http:
       tls:
         certResolver: letsencrypt-dynu
 
+    filebrowser-dynu:
+      rule: Host(`file.matrex.gleeze.com`)
+      service: filebrowser
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    pydio-dynu:
+      rule: Host(`pyd.matrex.gleeze.com`)
+      service: pydio
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+  
   services:
     uptimekuma:
       loadBalancer:
@@ -41,4 +57,14 @@ http:
     jellyfin:
       loadBalancer:
         servers:
-          - url: http://192.168.3.42:8096
+          - url: http://zima.my.local:8096
+
+    filebrowser:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:10180
+
+    pydio:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:8082
