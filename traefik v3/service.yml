@@ -40,14 +40,86 @@ http:
       tls:
         certResolver: letsencrypt-dynu
 
-    filebrowser-dynu:
-      rule: Host(`file.matrex.gleeze.com`)
-      service: filebrowser
+    wud-dynu:
+      rule: Host(`wud.matrex.gleeze.com`)
+      service: wud
       entryPoints:
         - websecure
       tls:
         certResolver: letsencrypt-dynu
 
+    dp-dynu:
+      rule: Host(`dp.matrex.gleeze.com`)
+      service: dp
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    home-dynu:
+      rule: Host(`home.matrex.gleeze.com`)
+      service: home
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    ddns-dynu:
+      rule: Host(`ddns.matrex.gleeze.com`)
+      service: ddns
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    btop-dynu:
+      rule: Host(`btop.matrex.gleeze.com`)
+      service: btop
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    downtify-dynu:
+      rule: Host(`dtify.matrex.gleeze.com`)
+      service: downtify
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    adg-dynu:
+      rule: Host(`adg.matrex.gleeze.com`)
+      service: adg
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    spd-dynu:
+      rule: Host(`spd.matrex.gleeze.com`)
+      service: spd
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    beszel-dynu:
+      rule: Host(`bes.matrex.gleeze.com`)
+      service: beszel
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+
+    pialert-dynu:
+      rule: Host(`pi.matrex.gleeze.com`)
+      service: pialert
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
+    
     pydio-dynu:
       rule: Host(`pyd.matrex.gleeze.com`)
       service: pydio
@@ -69,10 +141,55 @@ http:
         servers:
           - url: http://zima.my.local:8096
 
-    filebrowser:
+    wud:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:10180
+          - url: http://zima.my.local:3002
+
+    dp:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:8807
+
+    home:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:3000
+
+    ddns:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:8000
+
+    btop:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:7600
+
+    downtify:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:8582
+
+    adg:
+      loadBalancer:
+        servers:
+          - url: http://adg.my.local
+
+    spd:
+      loadBalancer:
+        servers:
+          - url: http://spd.my.local:5216
+
+    beszel:
+      loadBalancer:
+        servers:
+          - url: http://bes.my.local:8090
+
+    pialert:
+      loadBalancer:
+        servers:
+          - url: http://pi.my.local
 
     pydio:
       loadBalancer:
