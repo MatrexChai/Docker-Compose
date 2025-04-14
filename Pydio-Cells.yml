@@ -1,71 +1,65 @@
-version: "3.8"
+version: '3.9'
 
 services:
   mariadb:
-    image: mariadb:latest
     container_name: mariadb
-    ports:
-      - "3306:3306"
+    image: mariadb:latest
     environment:
       - MYSQL_DATABASE=cells
       - MYSQL_USER=pydio
       - MYSQL_PASSWORD=Matrex2003
       - MYSQL_ROOT_PASSWORD=Matrex2003
+    ports:
+      - "3306:3306"
     volumes:
       - /DATA/AppData/Pydio/var/lib/mysql:/var/lib/mysql
-    restart: unless-stopped
     networks:
       - pydio_network
-    labels:
-      icon: https://icon.casaos.io/main/all/pydio.png
+    restart: unless-stopped
 
   mongodb:
-    image: mongo:latest
     container_name: mongodb
-    ports:
-      - "27017:27017"
+    image: mongo:latest
     environment:
       - MONGO_INITDB_DATABASE=cells
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=Matrex2003
+    ports:
+      - "27017:27017"
     volumes:
       - /DATA/AppData/Pydio/var/lib/mongo:/data/db
-    restart: unless-stopped
     networks:
       - pydio_network
-    labels:
-      icon: https://icon.casaos.io/main/all/pydio.png
+    restart: unless-stopped
 
   pydio:
-    image: pydio/cells:latest
     container_name: pydio
+    image: pydio/cells:latest
     depends_on:
       mariadb:
         condition: service_started
       mongodb:
         condition: service_started
-    ports:
-      - "8082:8081"
     environment:
       - CELLS_BIND=0.0.0.0:8081
+      - CELLS_EXTERNAL=https://pyd.matrex.gleeze.com
+      - CELLS_NO_TLS=true
       - CELLS_MONGO_HOST=mongodb
       - CELLS_MONGO_PORT=27017
-      - CELLS_MONGO_DB=cells
       - CELLS_MONGO_USER=mongodb
       - CELLS_MONGO_PASS=Matrex2003
+      - CELLS_MONGO_DB=cells
       - CELLS_MONGO_AUTH_DB=admin
-      - CELLS_NO_TLS=true
+    ports:
+      - "8082:8081"
     volumes:
       - /DATA/AppData/Pydio/var/cells/data:/var/cells/data
       - /DATA/AppData/Pydio/var/cells/working:/var/cells/working
       - /DATA/AppData/Pydio/var/cells/conf:/var/cells/conf
-    restart: unless-stopped
     networks:
       - pydio_network
-    labels:
-      icon: https://icon.casaos.io/main/all/pydio.png
+    restart: unless-stopped
 
 networks:
   pydio_network:
-    name: reverent_glenn_pydio_network
     driver: bridge
