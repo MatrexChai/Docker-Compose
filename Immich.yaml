@@ -38,7 +38,7 @@ services:
     volumes:
       - /DATA/AppData/immich/upload:/usr/src/app/upload
     ports:
-      - "2283:3001"
+      - "2283:2283"
     networks:
       - immich
 
