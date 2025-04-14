@@ -1,61 +1,46 @@
-version: '3.7'
+version: "3.8"
 
 services:
   database:
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    image: tensorchord/pgvecto-rs:pg16-v0.2.0
     container_name: immich-postgres
-    command:
-      - postgres
-      - -c
-      - shared_preload_libraries=vectors.so
-      - -c
-      - search_path="", public, vectors
-      - -c
-      - logging_collector=on
-      - -c
-      - max_wal_size=2GB
-      - -c
-      - shared_buffers=512MB
-      - -c
-      - wal_compression=on
+    restart: always
     environment:
-      - POSTGRES_DB=immich
-      - POSTGRES_INITDB_ARGS=--data-checksums
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      POSTGRES_DB: immich
+      POSTGRES_USER: immich
+      POSTGRES_PASSWORD: immich
     volumes:
       - /DATA/AppData/immich/pgdata:/var/lib/postgresql/data
     networks:
       - immich
 
-  immich-server:
-    image: altran1502/immich-server:pr-14759
-    container_name: immich-server
-    depends_on:
-      database:
-        condition: service_started
-      redis:
-        condition: service_started
-    environment:
-      - DB_DATABASE_NAME=immich
-      - DB_PASSWORD=postgres
-      - DB_USERNAME=postgres
-    ports:
-      - "2283:2283"
-    volumes:
-      - /DATA/Gallery/immich:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
+  redis:
+    image: redis:7.2.4-alpine
+    container_name: immich-redis
+    restart: always
     networks:
       - immich
 
-  redis:
-    image: docker.io/redis:6.2-alpine@sha256:2ba50e1ac3a0ea17b736ce9db2b0a9f6f8b85d4c27d5f5accc6a416d8f42c6d5
-    container_name: immich-redis
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:release
+    container_name: immich-server
+    restart: unless-stopped
+    depends_on:
+      - database
+      - redis
+    environment:
+      DB_DATABASE_NAME: immich
+      DB_USERNAME: immich
+      DB_PASSWORD: immich
+      DB_HOSTNAME: immich-postgres
+      DB_PORT: 5432
+      REDIS_HOSTNAME: immich-redis
     volumes:
-      - /DATA/AppData/immich/redis:/data
+      - /DATA/AppData/immich/upload:/usr/src/app/upload
+    ports:
+      - "2283:3001"
     networks:
       - immich
 
 networks:
   immich:
-    name: immich
