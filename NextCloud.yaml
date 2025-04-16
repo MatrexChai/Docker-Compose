@@ -64,6 +64,18 @@ services:
     networks:
       - nextcloud_net
 
+  cron:
+    container_name: nextcloud-cron
+    image: nextcloud:latest
+    restart: unless-stopped
+    entrypoint: /cron.sh
+    volumes:
+      - /DATA/AppData/NextCloud/nextcloud:/var/www/html  # Core files, same as nextcloud container
+    depends_on:
+      - nextcloud
+    networks:
+      - nextcloud_net
+
 networks:
   nextcloud_net:
     driver: bridge
