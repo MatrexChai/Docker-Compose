@@ -18,6 +18,7 @@ services:
     volumes:
       - /DATA/AppData/NextCloud/nextcloud:/var/www/html
       - /DATA/AppData/NextCloud/data:/var/www/html/data
+      - /DATA/AppData/NextCloud/config:/var/www/html/config
     networks:
       - nextcloud_net
 
