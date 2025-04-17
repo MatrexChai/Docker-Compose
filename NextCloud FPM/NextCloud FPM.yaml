@@ -15,9 +15,9 @@ services:
       - POSTGRES_PASSWORD=changeme
       - POSTGRES_USER=nextcloud
       - REDIS_HOST=redis
-      - NEXTCLOUD_DATA_DIR=/var/www/html/data
     volumes:
-      - /DATA/AppData/NextCloud:/var/www/html
+      - /DATA/AppData/NextCloud/nextcloud:/var/www/html
+      - /DATA/AppData/NextCloud/data:/var/www/html/data
     networks:
       - nextcloud_net
 
@@ -30,7 +30,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - /DATA/AppData/NextCloud:/var/www/html:ro
+      - /DATA/AppData/NextCloud/nextcloud:/var/www/html:ro
       - /DATA/AppData/NextCloud/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - nextcloud_net
