@@ -18,8 +18,8 @@
         slug: statuspageslug
 
     - Speedtest Tracker:
-        href: https://st.matrex.gleeze.com
-        ping: https://st.matrex.gleeze.com
+        href: https://spd.matrex.gleeze.com
+        ping: https://spd.matrex.gleeze.com
         icon: speedtest-tracker.png
 
     - What's Up Docker:
