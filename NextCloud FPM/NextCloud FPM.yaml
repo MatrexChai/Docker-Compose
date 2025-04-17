@@ -21,7 +21,7 @@ services:
       - NEXTCLOUD_DATA_DIR=/var/www/html/data
     volumes:
       - /DATA/AppData/NextCloud:/var/www/html
-      - /DATA/AppData/NextCloud:/var/www/html/data
+      - /DATA/AppData/NextCloud/data:/var/www/html/data
     networks:
       - nextcloud_net
 
