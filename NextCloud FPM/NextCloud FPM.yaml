@@ -18,7 +18,6 @@ services:
       - POSTGRES_PASSWORD=changeme
       - POSTGRES_USER=nextcloud
       - REDIS_HOST=redis
-      - NEXTCLOUD_DATA_DIR=/var/www/html/data
     volumes:
       - /DATA/AppData/NextCloud:/var/www/html
       - /DATA/AppData/NextCloud/data:/var/www/html/data
