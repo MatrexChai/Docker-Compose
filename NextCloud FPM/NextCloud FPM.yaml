@@ -17,7 +17,6 @@ services:
       - POSTGRES_USER=nextcloud
       - REDIS_HOST=redis
       - NEXTCLOUD_DATA_DIR=/var/www/html/data
-      - OVERWRITEPROTOCOL=https  # Required for reverse proxy
     volumes:
       - /DATA/AppData/NextCloud/html:/var/www/html  # Core files + config
       - /DATA/AppData/NextCloud/data:/var/www/html/data  # User data (separate)
