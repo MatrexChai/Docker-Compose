@@ -72,15 +72,13 @@ services:
       - nextcloud_net
 
   cron:
-    container_name: nextcloud-cron
     image: nextcloud:fpm
     restart: unless-stopped
-    entrypoint: /cron.sh
-    depends_on:
-      - nextcloud
+    entrypoint: /bin/sh -c 'while true; do php -f /var/www/html/cron.php; sleep 300; done'
     volumes:
       - /DATA/AppData/NextCloud:/var/www/html
-      - /DATA/AppData/NextCloud/cron.sh:/cron.sh
+    depends_on:
+      - nextcloud
     networks:
       - nextcloud_net
 
