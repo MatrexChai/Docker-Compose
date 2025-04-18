@@ -32,8 +32,7 @@ services:
       - "8080:80"
     volumes:
       - /DATA/AppData/NextCloud/html:/var/www/html:ro
-      - /DATA/AppData/NextCloud/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /DATA/AppData/NextCloud/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /DATA/AppData/NextCloud/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
     networks:
       - nextcloud_net
 
