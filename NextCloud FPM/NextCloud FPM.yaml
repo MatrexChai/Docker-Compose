@@ -1,5 +1,11 @@
 version: "3.8"
 
+x-casaos:
+  title:
+    custom: NextCloud
+    en_us: nextcloud
+  icon: "https://icon.casaos.io/main/all/nextcloud.png"
+
 services:
   nextcloud:
     container_name: nextcloud
@@ -25,7 +31,7 @@ services:
       - /DATA/AppData/NextCloud/data:/var/www/html/data
     networks:
       - nextcloud_net
-      
+
   cron:
     container_name: nextcloud-cron
     depends_on:
@@ -70,8 +76,8 @@ services:
       - nextcloud_net
 
   postgres:
-    container_name: postgres  # 💥 renamed to match POSTGRES_HOST
-    image: postgres:alpine  # 💡 version-pinned
+    container_name: postgres
+    image: postgres:alpine
     restart: unless-stopped
     environment:
       - POSTGRES_DB=nextcloud
@@ -81,14 +87,14 @@ services:
       - /DATA/AppData/NextCloud/postgresql:/var/lib/postgresql/data
     networks:
       - nextcloud_net
-    healthcheck:  # ✅ ensures db is up before nextcloud starts
+    healthcheck:
       test: ["CMD-SHELL", "pg_isready -U nextcloud"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   redis:
-    container_name: redis  # 💥 renamed to match REDIS_HOST
+    container_name: redis
     image: redis:alpine
     restart: unless-stopped
     volumes:
