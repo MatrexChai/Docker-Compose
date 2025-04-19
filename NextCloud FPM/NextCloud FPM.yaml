@@ -1,20 +1,6 @@
 version: "3.8"
 
 services:
-  cron:
-    container_name: nextcloud-cron
-    depends_on:
-      nextcloud:
-        condition: service_started
-    entrypoint:
-      - /cron.sh
-    image: nextcloud:fpm
-    restart: unless-stopped
-    volumes:
-      - /DATA/AppData/NextCloud/nextcloud:/var/www/html
-    networks:
-      - nextcloud_net
-
   nextcloud:
     container_name: nextcloud
     depends_on:
@@ -37,6 +23,20 @@ services:
       - /DATA/AppData/NextCloud/apps:/var/www/html/apps
       - /DATA/AppData/NextCloud/config:/var/www/html/config
       - /DATA/AppData/NextCloud/data:/var/www/html/data
+    networks:
+      - nextcloud_net
+      
+  cron:
+    container_name: nextcloud-cron
+    depends_on:
+      nextcloud:
+        condition: service_started
+    entrypoint:
+      - /cron.sh
+    image: nextcloud:fpm
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/NextCloud/nextcloud:/var/www/html
     networks:
       - nextcloud_net
 
