@@ -1,0 +1,11 @@
+{
+  "settings": [
+    {
+      "provider": "dynu",
+      "domain": "matrex.gleeze.com",
+      "username": "chaifamily",
+      "password": "Matrex2003",
+      "ip_version": "ipv4"
+    }
+  ]
+}
