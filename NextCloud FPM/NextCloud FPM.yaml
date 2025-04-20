@@ -1,11 +1,4 @@
 version: "3.8"
-
-x-casaos:
-  title:
-    custom: NextCloud
-    en_us: nextcloud
-  icon: "https://icon.casaos.io/main/all/nextcloud.png"
-
 services:
   nextcloud:
     container_name: nextcloud
