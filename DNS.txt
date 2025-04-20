@@ -14,3 +14,17 @@ https://dns.adguard-dns.com/dns-query
 quic://dns.adguard-dns.com
 https://cloudflare-dns.com/dns-query
 public2.114dns.com
+
+DDNS Updater
+
+{
+  "settings": [
+    {
+      "provider": "dynu",
+      "domain": "matrex.gleeze.com",
+      "username": "chaifamily",
+      "password": "Matrex2003",
+      "ip_version": "ipv4"
+    }
+  ]
+}
