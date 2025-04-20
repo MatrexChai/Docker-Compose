@@ -1,11 +1,25 @@
 http:
   middlewares:
-    pydio-upload-limit:
-      buffering:
-        maxRequestBodyBytes: 10737418240  # 10GB
-        memRequestBodyBytes: 10485760     # 10MB in memory
-        maxResponseBodyBytes: 0           # 0 = unlimited
-        memResponseBodyBytes: 10485760
+    nextcloud-headers:
+      headers:
+        customRequestHeaders:
+          X-Forwarded-For: "{client.ip}"
+          X-Forwarded-Proto: "{scheme}"
+          X-Real-IP: "{client.ip}"
+        frameDeny: true
+        sslRedirect: true
+        stsSeconds: 31536000
+        stsIncludeSubdomains: true
+        stsPreload: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        referrerPolicy: "no-referrer"
+
+    hsts-header:
+      headers:
+        stsSeconds: 15552000           # 180 days
+        stsIncludeSubdomains: true
+        stsPreload: true
 
   routers:
     uptimekuma-duckdns:
@@ -119,16 +133,24 @@ http:
         - websecure
       tls:
         certResolver: letsencrypt-dynu
+
+    zima-dynu:
+      rule: Host(`zima.matrex.gleeze.com`)
+      service: zima
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt-dynu
     
-    pydio-dynu:
-      rule: Host(`pyd.matrex.gleeze.com`)
-      service: pydio
+    nc-dynu:
+      rule: Host(`nc.matrex.gleeze.com`)
+      service: nextcloud
       entryPoints:
         - websecure
       tls:
         certResolver: letsencrypt-dynu
       middlewares:
-        - pydio-upload-limit
+        - nextcloud-headers
 
   services:
     uptimekuma:
@@ -191,10 +213,12 @@ http:
         servers:
           - url: http://pi.my.local
 
-    pydio:
+    zima:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:8082
-        passHostHeader: true
-        responseForwarding:
-          flushInterval: 100ms
+          - url: http://zima.my.local:100
+
+    nextcloud:
+      loadBalancer:
+        servers:
+          - url: http://zima.my.local:8080
