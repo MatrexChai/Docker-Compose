@@ -63,3 +63,7 @@ providers:
 
 log:
   level: DEBUG
+
+headers:
+  forwardedHeaders:
+    insecure: true
