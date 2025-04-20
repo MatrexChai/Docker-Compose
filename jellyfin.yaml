@@ -8,14 +8,30 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /DATA/appdata/jellyfin/config:/config:rw
-      - /DATA/appdata/jellyfin/cache:/cache:rw
-      - /DATA/appdata/jellyfin/media/Hong Kong Drama:/Hong Kong Drama
-      - /DATA/appdata/jellyfin/media/China Drama:/China Drama
-      - /DATA/appdata/jellyfin/media/China Movie:/China Movie
-      - /DATA/appdata/jellyfin/media/Singapore Drama:/Singapore Drama
-      - /DATA/appdata/jellyfin/media/Movies:/Movies
-      - /DATA/appdata/jellyfin/media/Shows:/Shows
+      - type: bind
+        source: /DATA/AppData/jellyfin/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/jellyfin/cache
+        target: /cache
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/Hong Kong Drama
+        target: /Hong Kong Drama
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/China Drama
+        target: /China Drama
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/China Movies
+        target: /China Movie
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/Singapore Drama
+        target: /Singapore Drama
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/Movies
+        target: /Movies
+      - type: bind
+        source: /DATA/AppData/jellyfin/media/Shows
+        target: /Shows
     ports:
       - 8096:8096
       - 8920:8920 #optional
