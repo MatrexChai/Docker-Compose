@@ -1,25 +1,8 @@
 entryPoints:
-  web:
+  http:
     address: ":80"
-    transport:
-      lifeCycle:
-        requestAcceptGraceTimeout: 42s
-        graceTimeOut: 42s
-      respondingTimeouts:
-        readTimeout: 5m
-        writeTimeout: 10m
-        idleTimeout: 5m
-
-  websecure:
+  https:
     address: ":443"
-    transport:
-      lifeCycle:
-        requestAcceptGraceTimeout: 42s
-        graceTimeOut: 42s
-      respondingTimeouts:
-        readTimeout: 5m
-        writeTimeout: 10m
-        idleTimeout: 5m
 
 certificatesResolvers:
   letsencrypt-duck:
