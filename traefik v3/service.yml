@@ -1,26 +1,4 @@
 http:
-  middlewares:
-    nextcloud-headers:
-      headers:
-        customRequestHeaders:
-          X-Forwarded-For: "{client.ip}"
-          X-Forwarded-Proto: "{scheme}"
-          X-Real-IP: "{client.ip}"
-        frameDeny: true
-        sslRedirect: true
-        stsSeconds: 31536000
-        stsIncludeSubdomains: true
-        stsPreload: true
-        browserXssFilter: true
-        contentTypeNosniff: true
-        referrerPolicy: "no-referrer"
-
-    hsts-header:
-      headers:
-        stsSeconds: 15552000           # 180 days
-        stsIncludeSubdomains: true
-        stsPreload: true
-
   routers:
     uptimekuma-duckdns:
       rule: Host(`upk.matrexdns.duckdns.org`)
