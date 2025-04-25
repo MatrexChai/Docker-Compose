@@ -64,14 +64,6 @@ http:
       tls:
         certResolver: letsencrypt-dynu
 
-    btop-dynu:
-      rule: Host(`btop.matrex.gleeze.com`)
-      service: btop
-      entryPoints:
-        - websecure
-      tls:
-        certResolver: letsencrypt-dynu
-
     downtify-dynu:
       rule: Host(`dtify.matrex.gleeze.com`)
       service: downtify
@@ -119,16 +111,6 @@ http:
         - websecure
       tls:
         certResolver: letsencrypt-dynu
-    
-    nc-dynu:
-      rule: Host(`nc.matrex.gleeze.com`)
-      service: nextcloud
-      entryPoints:
-        - websecure
-      tls:
-        certResolver: letsencrypt-dynu
-      middlewares:
-        - nextcloud-headers
 
   services:
     uptimekuma:
@@ -144,59 +126,59 @@ http:
     wud:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:3002
+          - url: http://192.168.3.36:3002
 
     dp:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:8807
+          - url: http://192.168.3.36:8807
 
     home:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:3000
+          - url: http://192.168.3.36:3000
 
     ddns:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:8000
+          - url: http://192.168.3.38:8000
 
     btop:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:7600
+          - url: http://192.168.3.36:7600
 
     downtify:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:8582
+          - url: http://192.168.3.36:8582
 
     adg:
       loadBalancer:
         servers:
-          - url: http://adg.my.local
+          - url: http://192.168.3.32
 
     spd:
       loadBalancer:
         servers:
-          - url: http://spd.my.local:5216
+          - url: http://192.168.3.35:5216
 
     beszel:
       loadBalancer:
         servers:
-          - url: http://bes.my.local:8090
+          - url: http://192.168.3.33:8090
 
     pialert:
       loadBalancer:
         servers:
-          - url: http://pi.my.local
+          - url: http://192.168.3.31
 
     zima:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:100
+          - url: http://192.168.3.36:100
 
     nextcloud:
       loadBalancer:
         servers:
-          - url: http://zima.my.local:8080
+          - url: http://192.168.3.36:8080
