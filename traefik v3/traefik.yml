@@ -1,8 +1,8 @@
 entryPoints:
-  http:
-    address: ":80"
-  https:
-    address: ":443"
+  web:
+    address: :80
+  websecure:
+    address: :443
 
 certificatesResolvers:
   letsencrypt-duck:
