@@ -12,7 +12,7 @@ certificatesResolvers:
       dnsChallenge:
         provider: duckdns
         disablePropagationCheck: true
-        delayBeforeCheck: 60s
+        delayBeforeCheck: 120s
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
@@ -24,7 +24,7 @@ certificatesResolvers:
       dnsChallenge:
         provider: dynu
         disablePropagationCheck: true
-        delayBeforeCheck: 60s
+        delayBeforeCheck: 120s
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
