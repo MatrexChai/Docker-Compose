@@ -1,0 +1,43 @@
+version: "3.4"
+networks:
+  monitoring:
+    driver: bridge
+services:
+  influxdb:
+    container_name: influxdb
+    image: influxdb:2.7-alpine
+    ports:
+      - 8086:8086
+    volumes:
+      - /Dockge/scrutiny/influxdb2/db:/var/lib/influxdb2
+      - /Dockge/scrutiny/influxdb2/config:/etc/influxdb2
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=Admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+      - DOCKER_INFLUXDB_INIT_ORG=homelab
+      - DOCKER_INFLUXDB_INIT_BUCKET=scrutiny
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=your-very-secret-token
+    restart: unless-stopped
+    networks:
+      - monitoring
+  scrutiny:
+    container_name: scrutiny
+    image: ghcr.io/analogj/scrutiny:master-web
+    ports:
+      - 8080:8080
+    volumes:
+      - /Dockge/scrutiny/config:/opt/scrutiny/config
+    environment:
+      - SCRUTINY_WEB_INFLUXDB_HOST=influxdb
+      - SCRUTINY_WEB_INFLUXDB_PORT=8086
+      - SCRUTINY_WEB_INFLUXDB_TOKEN=your-very-secret-token
+      - SCRUTINY_WEB_INFLUXDB_ORG=homelab
+      - SCRUTINY_WEB_INFLUXDB_BUCKET=scrutiny
+      - TZ=Asia/Kuala_Lumpur
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    networks:
+      - monitoring
