@@ -41,3 +41,5 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
+
+      #Need Scrutiny service and cron to update every few minutes
