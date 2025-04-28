@@ -1,8 +1,8 @@
 version: '3.8'
  
  services:
-   NextCloud:
-     container_name: nextcloud
+   nextcloud:
+     container_name: NextCloud
      image: nextcloud:fpm
      restart: unless-stopped
      depends_on:
