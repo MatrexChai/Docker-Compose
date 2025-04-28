@@ -42,4 +42,5 @@ services:
     networks:
       - monitoring
 
-      #Need Scrutiny service and cron to update every few minutes
+      #Need Scrutiny-collector and cron to update every few minutes
+      #Scrutiny-Collector need to run in the host
