@@ -44,3 +44,4 @@ services:
 
       #Need Scrutiny-collector and cron to update every few minutes
       #Scrutiny-Collector need to run in the host
+      #/opt/scrutiny/bin/scrutiny-collector-metrics run --api-endpoint "http://192.168.3.38:8080"
